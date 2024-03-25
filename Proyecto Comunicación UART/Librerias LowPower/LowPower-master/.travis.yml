@@ -1,0 +1,20 @@
+language: python
+python:
+    - "3.6"
+
+# Cache PlatformIO packages using Travis CI container-based infrastructure
+sudo: false
+cache:
+    directories:
+        - "~/.platformio"
+
+env:
+    - PLATFORMIO_CI_SRC=Examples/powerDownWakePeriodic/powerDownWakePeriodic.ino
+    - PLATFORMIO_CI_SRC=Examples/idleWakePeriodic/idleWakePeriodic.ino
+    - PLATFORMIO_CI_SRC=Examples/powerDownWakeExternalInterrupt/powerDownWakeExternalInterrupt.ino
+
+install:
+    - pip install -U platformio
+
+script:
+    - platformio ci --lib=. --board=moteino --board=moteinomega
